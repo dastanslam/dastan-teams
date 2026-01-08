@@ -57,15 +57,6 @@
                             <a class="nav-link" href="#services">Услуги</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#portfolio">Портфолио</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#testimonial">Отзывы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#blog">Блог</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#contact">Контакты</a>
                         </li>
                     </ul>
@@ -445,6 +436,59 @@
     <script src="assets/js/snow.js"></script>
     <!--  Custom JS  -->
     <script src="assets/js/arshia.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+      // Сюда нужно будет вставить ваш Public Key из EmailJS
+          emailjs.init("gJWEAw3Yo3VRy0saC");
+      })();
+    </script>
+    <script>
+        function sendEmail() {
+    // 1. Получаем данные из полей по их ID (как в вашем HTML)
+            var params = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("comments").value,
+            };
 
+    // 2. Простая валидация (чтобы не отправлять пустые письма)
+            if (params.name === "" || params.email === "" || params.message === "") {
+                alert("Пожалуйста, заполните имя, почту и сообщение!");
+                return;
+            }
+
+    // 3. Данные вашего сервиса EmailJS (их нужно получить на сайте)
+    const serviceID = "service_se48hcu"; // Замените на ваш Service ID
+    const templateID = "template_n3mx6wn"; // Замените на ваш Template ID
+
+    // 4. Меняем текст кнопки, чтобы пользователь видел процесс
+    const btn = document.getElementById("submit-btn");
+    const originalText = btn.innerText;
+    btn.innerText = "Отправка...";
+
+    // 5. Сама отправка
+    emailjs.send(serviceID, templateID, params)
+    .then(
+        function(response) {
+            // УСПЕХ
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("subject").value = "";
+            document.getElementById("comments").value = "";
+            btn.innerText = originalText;
+            alert("Сообщение успешно отправлено! Я свяжусь с вами скоро.");
+            console.log("SUCCESS!", response.status, response.text);
+        }, 
+        function(error) {
+            // ОШИБКА
+            btn.innerText = originalText;
+            alert("Ошибка отправки. Попробуйте позже.");
+            console.log("FAILED...", error);
+        }
+        );
+}
+</script>
     </body>
 </html>
