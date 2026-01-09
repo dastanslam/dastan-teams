@@ -2103,7 +2103,7 @@ canvas.particles-js-canvas-el {
     border-bottom: none !important;
   }
   .flat-demo .header{
-    background-color: #fafafa;
+    background-color: transparent;
   }
   .hero-03.full-screen{
     height: auto;
