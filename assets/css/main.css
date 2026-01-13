@@ -2,9 +2,11 @@
          GENERAL
 -------------------------*/
 body {
-  font-family: "Muli", sans-serif;
-  font-weight: 300;
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Оптимально для чтения. Если нужно тоньше, поставьте 300 */
   background-color: #f1f3f6;
+  -webkit-font-smoothing: antialiased; /* Делает Google Sans еще чище на Mac/iOS */
 }
 
 .full-screen {
@@ -42,7 +44,9 @@ main#main {
 }
 
 h1, h2, h3, h4, h5, h6, .h1 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700; /* Или 600, если хотите заголовки чуть мягче */
   line-height: 1.618;
 }
 
